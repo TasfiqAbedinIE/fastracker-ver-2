@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "FASTRACKER",
+    "owner": "tasfiqabedin",
+    "slug": "fastracker-ver2",
+    "version": "3.3.3",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "buildNumber": "2.8.0",
+      "supportsTablet": true
+    },
+    "android": {
+      "versionCode": 3,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.square.fastracker"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e8e77971-e9af-4b4f-83b2-10b21ac30e2f"
+      }
+    }
+  }
+}
