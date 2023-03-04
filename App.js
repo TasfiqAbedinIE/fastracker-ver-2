@@ -1,5 +1,4 @@
-import { useCallback } from 'react';
-import { View } from 'react-native';
+import { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {NavigationContainer} from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,44 +12,11 @@ import GuestScreen from './Screens/GuestScreen'
 import Dashboard from './Screens/Dashboard';
 import CapacityViewer from './Screens/CapacityViewer';
 import LogIn from './Screens/logIn';
+import AuthContextProvider, { AuthContext } from './store/authContext';
 
-import {useFonts} from 'expo-font'      //Importing Font module
-import * as SplashScreen from 'expo-splash-screen';
-
-const Stack =createNativeStackNavigator()
-const userstate = true
-
-SplashScreen.preventAutoHideAsync();
+const Stack = createNativeStackNavigator()
 
 export default function App() {
-
-  //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
-    // Always use this after all other function defined in a section //
-    const [fontsLoaded] = useFonts({
-      'phudu-Black': require('./assets/Phudu-Black.ttf'),
-      'phudu-Light': require('./assets/Phudu-Light.ttf'),
-      'phudu-Regular': require('./assets/Phudu-Regular.ttf'),
-      'Dosis-Regular': require('./assets/Dosis-Regular.ttf'),
-      'Roboto-Regular': require('./assets/RobotoCondensed-Regular.ttf'),
-      'Roboto-Bold': require('./assets/RobotoCondensed-Bold.ttf'),
-
-      'NoiseMachine': require('./assets/NoiseMachine.ttf'),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-      if (fontsLoaded) {
-        await SplashScreen.hideAsync();
-      }
-    }, [fontsLoaded]);
-  
-  if (!fontsLoaded) {
-      return null;
-  }
-
-  //--------------------------------------------//
-
-
-
 
   function AuthStack(){
     return(
@@ -66,50 +32,33 @@ export default function App() {
 
   function AuthenticatedUser(){
     return(
-      // <NavigationContainer >
-        <Stack.Navigator screenOptions={{animation: 'simple_push', headerStyle:{backgroundColor: "#9fff8c"}}}>
+        <Stack.Navigator screenOptions={{animation: 'simple_push', headerStyle:{backgroundColor: ColorLibrary.body_background}}}>
           <Stack.Screen options={{headerShown:false}} name="HOME" component={IntroScreen}/>
-          <Stack.Screen name="HOURLY PRODUCTION CONTAINER" component={HourlyProductionContainer} options={{title:"SEWING PRODUCTION"}}/>
-          <Stack.Screen name="MACHINE OPTIMIZATION" component={MachineOptimizationContainer}/>
-          <Stack.Screen name="CAPACITY ANALYSIS" component={CapacityAnalysisContainer} options={{title:"CAPACITY ANALYSIS"}}/>
+          <Stack.Screen name="HOURLY PRODUCTION CONTAINER" component={HourlyProductionContainer} options={{title:"SEWING PRODUCTION", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
+          <Stack.Screen name="MACHINE OPTIMIZATION" component={MachineOptimizationContainer} options={{title:"MACHINE DATABASE", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
+          <Stack.Screen name="CAPACITY ANALYSIS" component={CapacityAnalysisContainer} options={{title:"CAPACITY ANALYSIS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
           <Stack.Screen name="SQUARE NEWS" component={SquareNews}/>
         </Stack.Navigator>
-      // </NavigationContainer>
     )
   }
 
   function Navigation(){
+    const authCtx = useContext(AuthContext)
     return(
       <NavigationContainer>
-        {userstate && <AuthStack/>}
-        {!userstate && <AuthenticatedUser/>}
+        {!authCtx.isAuthenticated && <AuthStack/>}
+        {authCtx.isAuthenticated && <AuthenticatedUser/>}
         
       </NavigationContainer>
     )
   }
 
-  // <NavigationContainer>
-  //   <Stack.Navigator>
-  //   <Stack.Screen options={{headerShown:false}} name="GUESTHOME" component={GuestScreen}/>
-  //   </Stack.Navigator>
-  // </NavigationContainer>
-
   return(
     <>
       <StatusBar style='dark'/>
-      {/* <NavigationContainer >
-        <Stack.Navigator screenOptions={{animation: 'simple_push', headerStyle:{backgroundColor: "#9fff8c"}}}>
-          <Stack.Screen options={{headerShown:false}} name="HOME" component={IntroScreen}/>
-          <Stack.Screen name="HOURLY PRODUCTION CONTAINER" component={HourlyProductionContainer} options={{title:"SEWING PRODUCTION"}}/>
-          <Stack.Screen name="MACHINE OPTIMIZATION" component={MachineOptimizationContainer}/>
-          <Stack.Screen name="CAPACITY ANALYSIS" component={CapacityAnalysisContainer} options={{title:"CAPACITY ANALYSIS"}}/>
-          <Stack.Screen name="SQUARE NEWS" component={SquareNews}/>
-        </Stack.Navigator>
-      </NavigationContainer> */}
-      {/* {!userstate && <AuthenticatedUser/>}
-      {userstate && <GuestUser/>} */}
-      <Navigation onLayout={onLayoutRootView}/>
-
+      <AuthContextProvider>
+          <Navigation/>
+      </AuthContextProvider>
     </>
   )
 }

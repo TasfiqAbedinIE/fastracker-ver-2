@@ -1,5 +1,6 @@
 import { Text, TextInput, View, StyleSheet, Button } from "react-native";
 import { useEffect, useState } from "react";
+import { ColorLibrary } from "../Style/color";
 
 
 const ContainerLine = ({line, index, lineValue, setLineValue}) => {
@@ -79,10 +80,10 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 40,
         borderWidth: 0.5,
-        borderColor:"#6c757d",
+        borderColor:ColorLibrary.primary_text_border_button,
         borderRadius:5,
         textAlign:'center',
-        backgroundColor: 'white',
+        backgroundColor: ColorLibrary.body_background,
         fontSize: 16,
 
     },
@@ -98,12 +99,14 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize: 16,
-        fontWeight: 'bold'
+        // fontWeight: 'bold',
+        fontFamily: 'Roboto-Bold'
     },
     linetext:{
-        color:'#43aa8b',
+        color:ColorLibrary.primary_text_border_button,
         fontSize: 18,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+        fontFamily: 'Roboto-Bold',
     },
     button:{
         width: screen_width * 0.5,

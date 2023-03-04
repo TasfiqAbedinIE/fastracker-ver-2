@@ -1,13 +1,13 @@
 import { useState, useCallback, useContext } from 'react';
-import { Image, StyleSheet, Text, View, Dimensions, TextInput, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TextInput, Pressable, Alert } from 'react-native';
 import { ColorLibrary } from '../Style/color';
-// import {useFonts} from 'expo-font'      //Importing Font module
-// import * as SplashScreen from 'expo-splash-screen';
+import {useFonts} from 'expo-font'      //Importing Font module
+import * as SplashScreen from 'expo-splash-screen';
 
-// import { authenticate } from '../Util/auth';
-// import { AuthContext } from '../store/authContext';
+import { authenticate } from '../Util/auth';
+import { AuthContext } from '../store/authContext';
 
-// SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 
 
 function LogIn({navigation}){
@@ -30,44 +30,44 @@ function LogIn({navigation}){
         navigation.navigate("GUESTHOME")
     }
 
-    // const authCtx = useContext(AuthContext)
+    const authCtx = useContext(AuthContext)
 
-    // async function loginHandler(){
-    //     try{
-    //         const token = await authenticate(email, password)
-    //         authCtx.authenticate(token)
-    //     } catch(error){
-    //         Alert.alert("Wrong Credentials, Try Again")
-    //     }
-    // }
+    async function loginHandler(){
+        try{
+            const token = await authenticate(email, password)
+            authCtx.authenticate(token)
+        } catch(error){
+            Alert.alert("Wrong Email or Password, Try Again!")
+        }
+    }
 
     //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
     // Always use this after all other function defined in a section //
-    // const [fontsLoaded] = useFonts({
-    //     'phudu-Black': require('../assets/Phudu-Black.ttf'),
-    //     'phudu-Light': require('../assets/Phudu-Light.ttf'),
-    //     'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
-    //     'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
-    //     'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
-    //     'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
+    const [fontsLoaded] = useFonts({
+        'phudu-Black': require('../assets/Phudu-Black.ttf'),
+        'phudu-Light': require('../assets/Phudu-Light.ttf'),
+        'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
+        'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
+        'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
+        'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
 
-    //     'NoiseMachine': require('../assets/NoiseMachine.ttf'),
-    // });
+        'NoiseMachine': require('../assets/NoiseMachine.ttf'),
+    });
 
-    // const onLayoutRootView = useCallback(async () => {
-    //     if (fontsLoaded) {
-    //       await SplashScreen.hideAsync();
-    //     }
-    //   }, [fontsLoaded]);
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
     
-    // if (!fontsLoaded) {
-    //     return null;
-    // }
+    if (!fontsLoaded) {
+        return null;
+    }
 
     //--------------------------------------------//
 
     return(
-        <View style={styles.backgroundimage}>
+        <View style={styles.backgroundimage} onLayout={onLayoutRootView}>
             <View style={styles.logoBar}>
                 <Text style={styles.logo}>FasTracker</Text>
                 <Text style={styles.slogan}>Let's Make The World Better Together</Text>
@@ -76,11 +76,11 @@ function LogIn({navigation}){
                 <Text style={styles.logintext}>LOG IN</Text>
                 <TextInput style={styles.inputBox} placeholder="EMAIL" onChangeText={record_email}></TextInput>
                 <TextInput style={styles.inputBox} placeholder="PASSWORD" onChangeText={record_password}></TextInput>
-                {/* <View style={styles.button_view}>
+                <View style={styles.button_view}>
                     <Pressable style={styles.button} android_ripple={{color: '#fff'}} onPress={loginHandler}>
                         <Text style={styles.submitButtonText}>SUBMIT</Text>
                     </Pressable>
-                </View> */}
+                </View>
             </View>
             <View style={styles.guestBar}>
                 <Text style={styles.guestBarTitle}>Not A Member?</Text>
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     },
     guestBarbutton:{
         fontSize: screen_width < 200 ? 18:28,
-        fontFamily: 'Roboto-Bold',
+        fontFamily: 'phudu-Black',
         marginTop: 10,
         color: ColorLibrary.primary_text_border_button,
     },

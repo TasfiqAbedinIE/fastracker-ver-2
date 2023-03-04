@@ -1,16 +1,13 @@
-import { useState, useCallback } from 'react';
-// import {useFonts} from 'expo-font'      //Importing Font module
-// import * as SplashScreen from 'expo-splash-screen';
+import { useContext } from 'react';
 
-import { Image, StyleSheet, Text, View, Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ColorLibrary } from '../Style/color';
-
-// SplashScreen.preventAutoHideAsync();
+import { AuthContext } from '../store/authContext';
 
 
 function IntroScreen({navigation}){
+  const authCtx = useContext(AuthContext)
 
     function pressHandler_HPD(){
         navigation.navigate("HOURLY PRODUCTION CONTAINER")
@@ -25,31 +22,6 @@ function IntroScreen({navigation}){
       navigation.navigate('CAPACITY ANALYSIS')
     }
 
-  //   //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
-  //   // Always use this after all other function defined in a section //
-  //   const [fontsLoaded] = useFonts({
-  //     'phudu-Black': require('../assets/Phudu-Black.ttf'),
-  //     'phudu-Light': require('../assets/Phudu-Light.ttf'),
-  //     'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
-  //     'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
-  //     'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
-  //     'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
-
-  //     'NoiseMachine': require('../assets/NoiseMachine.ttf'),
-  //   });
-
-  //   const onLayoutRootView = useCallback(async () => {
-  //       if (fontsLoaded) {
-  //         await SplashScreen.hideAsync();
-  //       }
-  //     }, [fontsLoaded]);
-    
-  //   if (!fontsLoaded) {
-  //       return null;
-  //     }
-
-  // //--------------------------------------------//
-
     return(
         <View styles={styles.backgroundimage}>
           <View style={styles.logoBar}>
@@ -58,19 +30,23 @@ function IntroScreen({navigation}){
           <View style={styles.buttonGroupContainer}>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_HPD}>HOURLY PRODUCTION DATA</Text>
-              <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_HPD}/>
+              <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_HPD}/>
             </View>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_Moptz}>MACHINE OPTIMIZATION</Text>
-              <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_Moptz}/>
+              <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_Moptz}/>
             </View>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_CapacityAnalysis}>CAPACITY ANALYSIS</Text>
-              <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_CapacityAnalysis}/>
+              <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_CapacityAnalysis}/>
             </View>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_SquareNews}>SQUARE NEWS</Text>
-              <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_SquareNews}/>
+              <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_SquareNews}/>
+            </View>
+            <View style={styles.buttonContainer}>
+              {/* <Text style={styles.buttontext} onPress={pressHandler_SquareNews}>SQUARE NEWS</Text> */}
+              <Ionicons name="exit" color={ColorLibrary.primary_text_border_button} size={28} onPress={authCtx.logout}/>
             </View>
           </View>
     
@@ -89,8 +65,6 @@ export default IntroScreen
 
 screen_width = Dimensions.get("window").width
 screen_height = Dimensions.get("window").height
-
-// console.log(screen_width, screen_height)
 
 const styles = StyleSheet.create({
     backgroundimage:{
@@ -111,7 +85,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     },  
     buttonGroupContainer:{
-      marginTop: screen_height*0.22,
+      marginTop: screen_height*0.15,
       margin: 10
     },
     buttonContainer:{
@@ -121,7 +95,7 @@ const styles = StyleSheet.create({
     },
     buttontext:{
       fontSize: screen_width < 200 ? 20:28,
-      color: ColorLibrary.button_text_color_1,
+      color: ColorLibrary.primary_text_border_button,
       fontFamily: 'Roboto-Bold',
     },
     buttonimage:{
@@ -131,7 +105,7 @@ const styles = StyleSheet.create({
       marginLeft: screen_width*0.01,
     },
     powerbyContainer:{
-      marginVertical:screen_height*0.2,
+      marginVertical:screen_height*0.13,
     },
     powerbytext:{
       textAlign: 'center',

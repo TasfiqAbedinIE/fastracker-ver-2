@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView, ScrollView, Button} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ContainerLine from '../Components/ContainerLine';
 import { store_line_data } from '../Components/server_activity';
+import { ColorLibrary } from '../Style/color';
 
 screen_width = Dimensions.get('window').width;
 screen_height = Dimensions.get('window').height;
@@ -125,7 +125,7 @@ function Hourly_prod({navigation}) {
                     <ScrollView style={styles.scrollview}>
                       {value.map((e, i) => <ContainerLine line={e} index={i} lineValue={lineValue} setLineValue={setLineValue} />)}
                       {value.length?<View style={styles.button}>
-                        <Button title='SUBMIT' color={'#21d400'} onPress={async() => send_data()} />
+                        <Button title='SUBMIT' color={ColorLibrary.primary_text_border_button} onPress={async() => send_data()} />
                       </View>:null}
                     </ScrollView>
                     
@@ -149,9 +149,9 @@ const styles = StyleSheet.create({
   },
   dropdown:{
     marginTop: screen_height * 0.01,
-    marginLeft: screen_width * 0.03,
-    width: screen_width * 0.4,
-    backgroundColor: 'f8f9fa',
+    marginLeft: screen_width * 0.005,
+    width: screen_width * 0.45,
+    backgroundColor: ColorLibrary.body_background,
   },
   topcontainer:{
     flexDirection: 'row',
@@ -167,15 +167,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight:10,
     fontSize: 20,
-    fontWeight: 'bold',
-  },
-  textInput:{
-    width: screen_width * 0.35,
-    borderWidth: 2,
-    borderColor:"#2b2d42",
-    borderRadius:5,
-    textAlign:'center',
-    fontSize: 20,
+    fontFamily: 'Roboto-Regular'
   },
   button: {
     paddingHorizontal: '25%'

@@ -1,12 +1,13 @@
 import { useState, useCallback } from 'react';
-import {useFonts} from 'expo-font'      //Importing Font module
-import * as SplashScreen from 'expo-splash-screen';
+import { ColorLibrary } from '../Style/color';
+// import {useFonts} from 'expo-font'      //Importing Font module
+// import * as SplashScreen from 'expo-splash-screen';
 
 import { Image, StyleSheet, Text, View, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 
 function GuestScreen({navigation}){
@@ -26,31 +27,31 @@ function GuestScreen({navigation}){
 
   //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
     // Always use this after all other function defined in a section //
-    const [fontsLoaded] = useFonts({
-      'phudu-Black': require('../assets/Phudu-Black.ttf'),
-      'phudu-Light': require('../assets/Phudu-Light.ttf'),
-      'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
-      'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
-      'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
-      'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
+    // const [fontsLoaded] = useFonts({
+    //   'phudu-Black': require('../assets/Phudu-Black.ttf'),
+    //   'phudu-Light': require('../assets/Phudu-Light.ttf'),
+    //   'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
+    //   'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
+    //   'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
+    //   'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
 
-      'NoiseMachine': require('../assets/NoiseMachine.ttf'),
-    });
+    //   'NoiseMachine': require('../assets/NoiseMachine.ttf'),
+    // });
 
-    const onLayoutRootView = useCallback(async () => {
-        if (fontsLoaded) {
-          await SplashScreen.hideAsync();
-        }
-      }, [fontsLoaded]);
+    // const onLayoutRootView = useCallback(async () => {
+    //     if (fontsLoaded) {
+    //       await SplashScreen.hideAsync();
+    //     }
+    //   }, [fontsLoaded]);
     
-    if (!fontsLoaded) {
-        return null;
-      }
+    // if (!fontsLoaded) {
+    //     return null;
+    // }
 
   //--------------------------------------------//
 
     return(
-        <View styles={styles.backgroundimage} onLayout={onLayoutRootView}>
+        <View styles={styles.backgroundimage}>
           <View style={styles.logoBar}>
                 <Text style={styles.logo}>FasTracker</Text>
           </View>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundimage:{
       width:screen_width,
       height: screen_height*1.1,
-      backgroundColor: '#eff1ed',
+      backgroundColor: ColorLibrary.body_background,
     },
     logoBar:{
       marginTop: screen_height*0.13,
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     logo:{
         fontFamily: 'NoiseMachine',
         fontSize: 50,
-        color: '#2dc653',
+        color: ColorLibrary.logo,
     },
     versionText: {
       textAlign: 'center'
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     },
     buttontext:{
       fontSize: screen_width < 200 ? 20:28,
-      color: '#008921',
+      color: ColorLibrary.primary_text_border_button,
       fontFamily: 'Roboto-Bold'
     },
     buttonimage:{
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     },
     powerbytext:{
       textAlign: 'center',
-      color: '#616161',
+      color: ColorLibrary.primary_text_border_button,
       fontFamily: 'Roboto-Regular'
     }
   });

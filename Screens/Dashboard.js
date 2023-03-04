@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { BarChart } from "react-native-chart-kit";
+import { ColorLibrary } from "../Style/color";
 
 ////////////////////////////// USING REACT NATIVE SVG V-9.13.3 ///////////////////////////////
 
@@ -172,10 +173,10 @@ function Dashboard() {
                     width={screenWidth * 0.96}
                     height={220}
                     chartConfig={{
-                      backgroundColor: "#b5e48c",
+                      backgroundColor: ColorLibrary.body_background,
                       barPercentage: 0.8,
-                      backgroundGradientFrom: "#d3d3d3",
-                      backgroundGradientTo: "#f5f3f4",
+                      backgroundGradientFrom: "#ffffff",
+                      backgroundGradientTo: "#ffffff",
                       decimalPlaces: 2, // optional, defaults to 2dp
                       color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                       // labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -220,22 +221,21 @@ const styles = StyleSheet.create({
   },
   lineText: {
     fontSize: 16,
-    fontWeight: "bold",
-    color: "#52b69a",
+    fontFamily: "phudu-Black",
+    color: ColorLibrary.primary_text_border_button,
   },
   chartArea: {
-    backgroundColor: "#f5f3f4"
+    backgroundColor: ColorLibrary.body_background,
   },
   reportContainer:{
     flexDirection: 'row',
-    marginLeft: screenWidth * 0.06,
+    marginLeft: screenWidth * 0.04,
     marginBottom: screenHeight * 0.02,
   },
   achievementPercent:{
     marginLeft: screenWidth * 0.1,
   },
   reportText:{
-    // fontSize: 18,
-    fontWeight: '500',
+    fontFamily: 'phudu-Regular'
   }
 });
