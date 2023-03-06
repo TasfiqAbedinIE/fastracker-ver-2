@@ -1,6 +1,7 @@
 import { FlatList, Text, View, StyleSheet, Dimensions } from "react-native";
 import GridTile from "../Components/GridTile";
 import { NewsValue } from "../Components/News_data";
+import { ColorLibrary } from "../Style/color";
 
 screen_width = Dimensions.get('window').width
 screen_height = Dimensions.get('window').height
@@ -21,7 +22,7 @@ function SquareNews(){
     }
     return(
         <View style={styles.container}>
-                <FlatList
+                <FlatList style={styles.newslist}
                     data={NewsValue}
                     keyExtractor={(item) => item.serial}
                     renderItem={renderNews}
@@ -40,18 +41,17 @@ const styles = StyleSheet.create({
     header:{
         height: screen_height*0.08,
         marginTop: '8%',
-        backgroundColor: '#a9fc94'
     },
     headerText:{
         fontSize: 22,
         fontWeight: 'bold',
         marginTop: "5%",
         marginLeft: '35%',
-        color: '#29b804'
+        color: ColorLibrary.primary_text_border_button
     },
     container:{
         height: screen_height,
-        backgroundColor: '#deffe2',
+        backgroundColor: ColorLibrary.body_background,
         paddingBottom: screen_height * 0.08,
     },
 })

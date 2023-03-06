@@ -3,7 +3,7 @@
     "name": "FASTRACKER",
     "owner": "tasfiqabedin",
     "slug": "fastracker-ver2",
-    "version": "3.3.3",
+    "version": "4.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -23,7 +23,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
@@ -35,7 +35,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e8e77971-e9af-4b4f-83b2-10b21ac30e2f"
+        "projectId": "c1098ac7-72cf-4cc0-b2d2-8bc570beaeb9"
       }
     }
   }

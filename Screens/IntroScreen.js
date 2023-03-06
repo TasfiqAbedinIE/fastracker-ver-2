@@ -1,9 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useCallback } from 'react';
+import {useFonts} from 'expo-font'      //Importing Font module
+import * as SplashScreen from 'expo-splash-screen';
 
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ColorLibrary } from '../Style/color';
 import { AuthContext } from '../store/authContext';
+
+SplashScreen.preventAutoHideAsync();
 
 
 function IntroScreen({navigation}){
@@ -22,8 +26,33 @@ function IntroScreen({navigation}){
       navigation.navigate('CAPACITY ANALYSIS')
     }
 
+    //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
+    // Always use this after all other function defined in a section //
+    const [fontsLoaded] = useFonts({
+      'phudu-Black': require('../assets/Phudu-Black.ttf'),
+      'phudu-Light': require('../assets/Phudu-Light.ttf'),
+      'phudu-Regular': require('../assets/Phudu-Regular.ttf'),
+      'Dosis-Regular': require('../assets/Dosis-Regular.ttf'),
+      'Roboto-Regular': require('../assets/RobotoCondensed-Regular.ttf'),
+      'Roboto-Bold': require('../assets/RobotoCondensed-Bold.ttf'),
+
+      'NoiseMachine': require('../assets/NoiseMachine.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    }, [fontsLoaded]);
+  
+  if (!fontsLoaded) {
+      return null;
+  }
+
+  //--------------------------------------------//
+
     return(
-        <View styles={styles.backgroundimage}>
+        <View styles={styles.backgroundimage} onLayout={onLayoutRootView}>
           <View style={styles.logoBar}>
                 <Text style={styles.logo}>FasTracker</Text>
           </View>
@@ -53,7 +82,7 @@ function IntroScreen({navigation}){
           <View style={styles.powerbyContainer}>
             <Text style={styles.powerbytext}>Powered By SQUARE</Text>
             <Text style={styles.powerbytext}>Developed By - Industrial Engineering Department</Text>
-            <Text style={styles.powerbytext}>Version - 3.3.4</Text>
+            <Text style={styles.powerbytext}>Version - 4.0.0</Text>
           </View>
     
         </View>

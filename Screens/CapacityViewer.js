@@ -1,50 +1,42 @@
 import axios from 'axios';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Col, Row, Rows, Table, TableWrapper } from 'react-native-table-component';
+import { fireStoreDb } from '../lib/firebase';
 import { ColorLibrary } from '../Style/color';
 
 const CapacityViewer = () => {
-    
     const [operatorId, setOperatorId] = useState('330');
     const [result, setResult] = useState('')
 
     const capacityTableHead = ['Process', 'Item', 'Fabric Type', 'Cycle Time']
     const [capacityTableData, setCapacityTableData] = useState([])
 
+    const colRef = collection(fireStoreDb,"capacity");
+
     const getCapacity = async() => {
-        axios.get(`https://firsttrial-cff1d-default-rtdb.firebaseio.com/capacityDatabase/${operatorId}.json`)
-        .then((res) => {
-            const data = res.data
-            const tempProcess = Object.keys(data);
-            const tempCapacityTableData = []
+        const q = query(colRef, where("id", "==", Number(operatorId)));
+        const querySnapshot = await getDocs(q);
 
-            tempProcess.forEach(element => {
-                const dates = Object.keys(data[element])
-                
-                const lastDate = dates[dates.length-1]
-                
-                const rowData = []
-                rowData.push(element)
-                rowData.push(data[element][lastDate]["Item"])
-                rowData.push(data[element][lastDate]["Fab Type"])
-                rowData.push(data[element][lastDate]["Cycle Time"])
-
-                tempCapacityTableData.push(rowData);
-                console.log('row data :'+rowData)
-            });
-            setCapacityTableData([...tempCapacityTableData])
+        const tempCapacityTableData = [];
+        querySnapshot.forEach((d) => {
+            const data = d.data();
+            tempCapacityTableData.push([data.process, data.item, data.fabric, (data.cycle).toString()]);
+            
         })
+
+        setCapacityTableData(tempCapacityTableData);
     }
   return (
     <View style={styles.mainContainer}>
-        {/* <Text style={styles.headerText}>Capacity Viewer</Text> */}
+        <Text style={styles.headerText}>Capacity Viewer</Text>
         <View style={styles.searchContainer}>
             <TextInput style={styles.input} value={operatorId} onChangeText={setOperatorId} />
             <Button title='Search' onPress={getCapacity}/>
         </View>
         <View  style={styles.tableContainer}>
-        <Table borderStyle={{borderWidth: 1, borderColor: ColorLibrary.primary_text_border_button}}>
+        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
           <Row data={capacityTableHead} flexArr={[3, 1, 1, 1]} style={styles.head} textStyle={styles.tableHeaderText}/>
           <Rows data={capacityTableData} flexArr={[3, 1, 1, 1]} style={styles.row} textStyle={styles.text}/>
         </Table>
@@ -78,7 +70,8 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 15,
     },
     tableContainer: {
         marginVertical: 20,

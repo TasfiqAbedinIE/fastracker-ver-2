@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, TextInput, View, Text, Pressable, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Dimensions, TextInput, View, Text, ScrollView, TouchableOpacity, Alert } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import DropDownPicker from "react-native-dropdown-picker";
 import {store_line_machine} from '../Components/server_activity'
-import LoadingOverlay from '../Components/LoadingOverlay'
 import Spinner from "react-native-loading-spinner-overlay";
+import { ColorLibrary } from "../Style/color";
 
 let screen_height = Dimensions.get("window").height;
 let screen_width = Dimensions.get("window").width;
@@ -271,7 +271,8 @@ screen_height = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
  container:{
-  paddingBottom:0
+  paddingBottom:0,
+  backgroundColor: ColorLibrary.body_background,
  }, 
   header: {
     flexDirection: "row",
@@ -291,15 +292,19 @@ const styles = StyleSheet.create({
   },
   textinput: {
     borderWidth: 0.5,
-    borderColor: "black",
+    borderColor: ColorLibrary.primary_text_border_button,
     borderRadius: 10,
     height: 50,
     textAlign: "center",
     fontSize: 16,
+    fontFamily: "Roboto-Regular"
   },
   dropdown: {
     width: screen_width * 0.42,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: ColorLibrary.body_background,
+    borderColor: ColorLibrary.primary_text_border_button,
+    borderWidth: 0.5,
+    fontFamily: "Roboto-Regular"
   },
   ///////// Total Machine Container ///////////
   scrolloption:{
@@ -312,32 +317,13 @@ const styles = StyleSheet.create({
   },
   totalMachineText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Roboto-Bold",
   },
   /////////// Button Input Section ////////////
 
   machineQtyContainer:{
     flexDirection:'row',
     alignItems:'center'
-  },
-  generalFontSize:{
-    fontSize: 16,
-    fontWeight: 'bold',
-    paddingHorizontal:5,
-  },
-  numberFontSize:{
-    fontSize: 18,
-    paddingHorizontal: 7,
-  },
-  machineNameText:{
-    // marginTop:10,
-    marginLeft: screen_width * 0.03,
-    fontSize: 18,
-  },
-  mainContainer:{
-    flexDirection: 'row',
-    marginLeft: screen_width * 0.03,
-    // marginTop: 5,
   },
   machineContainer1:{
     marginHorizontal:10,
@@ -351,12 +337,8 @@ const styles = StyleSheet.create({
   },
   machineText: {
     fontSize: 18,
-    padding: 5
-  },
-  machineContainer2:{
-    marginLeft: screen_width * 0.03,
-    borderLeftWidth:1,
-    borderLeftColor: 'green',
+    padding: 5,
+    fontFamily: "Roboto-Regular",
   },
   pressButton:{
     position: 'absolute',
@@ -364,7 +346,7 @@ const styles = StyleSheet.create({
     marginLeft: screen_width * 0.25,
     width: screen_width * 0.5,
     height: screen_height * 0.06,
-    backgroundColor: 'green',
+    backgroundColor: ColorLibrary.primary_text_border_button,
     borderRadius:15,
     elevation: 5,
     overflow: 'hidden',
@@ -375,7 +357,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: screen_height * 0.015,
     fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white'
+    fontFamily: "Roboto-Bold",
+    color: ColorLibrary.button_text_color_1,
   }
 });

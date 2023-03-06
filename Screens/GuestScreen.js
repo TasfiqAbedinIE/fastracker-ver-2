@@ -4,7 +4,6 @@ import { ColorLibrary } from '../Style/color';
 // import * as SplashScreen from 'expo-splash-screen';
 
 import { Image, StyleSheet, Text, View, Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // SplashScreen.preventAutoHideAsync();
@@ -69,15 +68,14 @@ function GuestScreen({navigation}){
               <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_SquareNews}/>
             </View>
             <View style={styles.buttonContainer}>
-              <Text style={styles.buttontext} onPress={pressHandler_LogInScreen}>GO TO LOGIN</Text>
-              <Ionicons name="arrow-forward-outline" color={"#008921"} size={28} onPress={pressHandler_LogInScreen}/>
+              <Ionicons name="exit" color={"#008921"} size={28} onPress={pressHandler_LogInScreen}/>
             </View>
           </View>
     
           <View style={styles.powerbyContainer}>
             <Text style={styles.powerbytext}>Powered By SQUARE</Text>
             <Text style={styles.powerbytext}>Developed By - Industrial Engineering Department</Text>
-            <Text style={styles.powerbytext}>Version - 3.3.4</Text>
+            <Text style={styles.powerbytext}>Version - 4.0.0</Text>
           </View>
     
         </View>

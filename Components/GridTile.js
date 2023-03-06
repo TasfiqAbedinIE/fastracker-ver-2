@@ -1,4 +1,5 @@
 import { Pressable, View, Text, StyleSheet, Dimensions, Image} from "react-native"
+import { ColorLibrary } from "../Style/color"
 
 function GridTile({serial, dept, news, image}){
 
@@ -29,18 +30,19 @@ const styles = StyleSheet.create({
     },
     innerContainer:{
         padding:20,
-        backgroundColor: '#fefee3',
+        backgroundColor: ColorLibrary.body_background,
     },
     title:{
-        fontWeight:'bold',
         fontSize: screen_width > 390 ? 24:22,
         textAlign: 'justify',
-        color: "#168aad"
+        color: ColorLibrary.primary_text_border_button,
+        fontFamily: "phudu-Black"
     },
     description:{
         fontSize: screen_width > 390 ? 18:16,
         textAlign: 'justify',
         color: 'black',
+        fontFamily: "phudu-Regular",
         marginTop: 10,
     },
     image:{

@@ -10,6 +10,7 @@ import { AuthContext } from '../store/authContext';
 SplashScreen.preventAutoHideAsync();
 
 
+
 function LogIn({navigation}){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -89,7 +90,7 @@ function LogIn({navigation}){
             <View style={styles.powerbyContainer}>
                 <Text style={styles.powerbytext}>Powered By SQUARE</Text>
                 <Text style={styles.powerbytext}>Developed By - Industrial Engineering Department</Text>
-                <Text style={styles.powerbytext}>Version - 3.3.4</Text>
+                <Text style={styles.powerbytext}>Version - 4.0.0</Text>
             </View>
         </View>
     )

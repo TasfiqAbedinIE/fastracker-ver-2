@@ -18,6 +18,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import Spinner from "react-native-loading-spinner-overlay";
 import Stopwatch from "../Components/StopWatch";
 import MachineList from "../lib/machineList.json"
+import { ColorLibrary } from "../Style/color";
 
 const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
@@ -348,7 +349,7 @@ function CapacityAnalysis(){
                             <View style={{flex:1, marginHorizontal:5}}>
                                 <DropDownPicker
                                     placeholder="Select Machine"
-                                    style={{}}
+                                    style={{borderColor:ColorLibrary.primary_text_border_button}}
                                     dropDownContainerStyle={{}}
                                     listItemContainerStyle={{}}
                                     open={openMachineList}
@@ -369,7 +370,7 @@ function CapacityAnalysis(){
                         <View style={{flex:1, marginHorizontal:5}}>
                         <DropDownPicker
                             placeholder="Select Line"
-                            style={{}}
+                            style={{borderColor: ColorLibrary.primary_text_border_button}}
                             dropDownContainerStyle={{}}
                             listItemContainerStyle={{}}
                             open={openLine}
@@ -386,7 +387,7 @@ function CapacityAnalysis(){
                         <View style={{flex:1, marginHorizontal:5}}>
                         <DropDownPicker
                             placeholder="Select Fabric"
-                            style={{}}
+                            style={{borderColor: ColorLibrary.primary_text_border_button}}
                             dropDownContainerStyle={{}}
                             listItemContainerStyle={{}}
                             open={openFabric}
@@ -402,7 +403,7 @@ function CapacityAnalysis(){
                         
                     </View>
                     <View style={{flexDirection:"row", justifyContent:"center"}}>
-                        <TextInput style={{borderWidth:1, borderRadius: 5, flex:1, marginHorizontal:15, marginVertical:5, padding:5, paddingLeft:10}} placeholder="REMARKS" onChangeText={setRemarks}>{remarks}</TextInput>
+                        <TextInput style={{borderWidth:1, borderRadius: 5, flex:1, marginHorizontal:15, marginVertical:5, padding:5, paddingLeft:10, borderColor: ColorLibrary.primary_text_border_button, fontFamily: "Roboto-Regular"}} placeholder="REMARKS" onChangeText={setRemarks}>{remarks}</TextInput>
                     </View>
                     <TouchableOpacity style={styles.pressButton} onPress={importCapacityData}>
                         <View>
@@ -451,20 +452,11 @@ const styles = StyleSheet.create({
         padding: screenWidth * 0.02,
         marginVertical: screenHeight * 0.008,
         // borderBottomWidth: 1,
-        borderWidth: 1,
-        borderColor: 'gray',
+        borderWidth: 0.5,
+        borderColor: ColorLibrary.primary_text_border_button,
         width: 100,
-        backgroundColor: 'white'
-    },
-    textInputStyle:{
-        width: screenWidth * 0.3,
-        height: 40,
-        borderWidth: 1,
-        borderColor: 'black',
+        backgroundColor: 'white',
         borderRadius: 10,
-        fontSize: 17,
-        textAlign: 'center',
-        marginLeft: screenWidth * 0.025,
     },
     IdLineNoContainer:{
         flexDirection: 'row',
@@ -476,7 +468,7 @@ const styles = StyleSheet.create({
         // width: "40%",
         paddingVertical:5,
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: ColorLibrary.primary_text_border_button,
         borderRadius: 10,
         fontSize: 17,
         textAlign: 'center',
@@ -484,7 +476,7 @@ const styles = StyleSheet.create({
         // marginLeft: screenWidth * 0.025,
     },
     manualEntryContainer:{
-        
+        borderColor: ColorLibrary.primary_text_border_button,
         marginTop: screenHeight * 0.00,
     },
     pressButton:{
@@ -493,15 +485,16 @@ const styles = StyleSheet.create({
         padding: screenWidth * 0.03,
         // margin: screenWidth * 0.000,
         backgroundColor: '#7bf1a8',
-        borderRadius:15,
+        borderRadius: 15,
         elevation: 5,
         overflow: 'hidden',
+        width: screenWidth * 0.3
       },
       pressButtonText:{
         textAlign: "center",
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#000000'
+        color: '#000000',
+        fontFamily: "Roboto-Bold"
       },
       spinnerTextStyle: {
         color: '#FFF'
