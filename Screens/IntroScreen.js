@@ -25,6 +25,9 @@ function IntroScreen({navigation}){
     function pressHandler_CapacityAnalysis(){
       navigation.navigate('CAPACITY ANALYSIS')
     }
+    function pressHandler_EfficiencyAnalysis(){
+      navigation.navigate('EFFICIENCY ANALYSIS')
+    }
 
     //----------------- THIS SECTION TO LOAD CUSTOM FONT IN THE APP -----------------//
     // Always use this after all other function defined in a section //
@@ -68,6 +71,10 @@ function IntroScreen({navigation}){
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_CapacityAnalysis}>CAPACITY ANALYSIS</Text>
               <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_CapacityAnalysis}/>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Text style={styles.buttontext} onPress={pressHandler_EfficiencyAnalysis}>EFFICIENCY ANALYSIS</Text>
+              <Ionicons name="arrow-forward-outline" color={ColorLibrary.primary_text_border_button} size={28} onPress={pressHandler_EfficiencyAnalysis}/>
             </View>
             <View style={styles.buttonContainer}>
               <Text style={styles.buttontext} onPress={pressHandler_SquareNews}>SQUARE NEWS</Text>

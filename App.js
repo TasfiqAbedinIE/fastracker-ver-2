@@ -14,6 +14,7 @@ import GuestScreen from './Screens/GuestScreen';
 import Dashboard from './Screens/Dashboard';
 import CapacityViewer from './Screens/CapacityViewer';
 import LogIn from './Screens/logIn';
+import EfficiencyContainer from './Screens/efficiencyContainer';
 import AuthContextProvider, { AuthContext } from './store/authContext';
 
 const Stack = createNativeStackNavigator()
@@ -37,6 +38,7 @@ function AuthenticatedUser(){
         <Stack.Screen name="HOURLY PRODUCTION CONTAINER" component={HourlyProductionContainer} options={{title:"SEWING PRODUCTION", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
         <Stack.Screen name="MACHINE OPTIMIZATION" component={MachineOptimizationContainer} options={{title:"MACHINE DATABASE", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
         <Stack.Screen name="CAPACITY ANALYSIS" component={CapacityAnalysisContainer} options={{title:"CAPACITY ANALYSIS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
+        <Stack.Screen name="EFFICIENCY ANALYSIS" component={EfficiencyContainer} options={{title:"EFFICIENCY ANALYSIS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
         <Stack.Screen name="SQUARE NEWS" component={SquareNews} options={{title:"SQUARE NEWS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
 
         
