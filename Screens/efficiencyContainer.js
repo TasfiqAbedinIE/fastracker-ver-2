@@ -23,6 +23,7 @@ function EfficiencyOverview(){
           headerTintColor:GlobalStyles.colors.text_border_button,
           tabBarStyle:{backgroundColor:GlobalStyles.colors.headerColor},
           tabBarActiveTintColor:GlobalStyles.colors.accent500,
+          headerLeft:({tintColor})=> <IconButton icon="arrow-back-outline" size={24} color={tintColor} onPress={()=>{ navigation.navigate('HOME')}} />,
           headerRight:({tintColor})=> <IconButton icon="add" size={24} color={tintColor} onPress={()=>{ navigation.navigate('ManageEfficiency')}} />
          })}>
               <Bottomtabs.Screen 

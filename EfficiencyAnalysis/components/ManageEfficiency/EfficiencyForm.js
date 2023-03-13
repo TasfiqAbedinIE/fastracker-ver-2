@@ -80,9 +80,20 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
         });
     }
 
+    function checkevalerror(value){
+        let result=''
+        try {
+           result= eval(value) ;
+        } catch (error) {
+            result=0;
+        }
+        return result;
+    }
+
 
 
     function submitHandler(){
+                            //console.log(!isNaN(inputs.hour.value));
                             const efficiencyData={
                                                     lineNumber: inputs.lineNumber.value,
                                                     date: new Date(inputs.date.value),
@@ -91,14 +102,15 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                                                     styleName: inputs.styleName.value,
                                                     SMV:       +inputs.SMV.value,
                                                     manpower:  +eval(inputs.manpower.value),
-                                                    hour:       +eval(inputs.hour.value),
-                                                    production: +eval(inputs.production.value),
-                                                    without:     +eval(inputs.without.value),
-                                                    due:         +eval(inputs.due.value),
-                                                    rejection:   +eval(inputs.rejection.value),
+                                                    hour:       +!isNaN(inputs.hour.value)?+inputs.hour.value:+checkevalerror(inputs.hour.value),
+                                                    production: +!isNaN(inputs.production.value)?+inputs.production.value:+checkevalerror(inputs.production.value),
+                                                    without:     +!isNaN(inputs.without.value)?+inputs.without.value:+checkevalerror(inputs.without.value),
+                                                    due:         +!isNaN(inputs.due.value)?+inputs.due.value:+checkevalerror(inputs.due.value),
+                                                    rejection:   +!isNaN(inputs.rejection.value)?+inputs.rejection.value:+checkevalerror(inputs.rejection.value),
                                                  };
 
  
+                                                 
                                
                                 
                                             
@@ -109,12 +121,19 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                                 const dateIsValid = efficiencyData.date.toString() !== 'Invalid Date';
                                
                                 const SMVIsvalid = !isNaN(efficiencyData.SMV) && efficiencyData.SMV > 0;
-                                const manpowerIsvalid = !isNaN(efficiencyData.manpower) && efficiencyData.manpower > 0;
-                                const hourIsvalid = !isNaN(efficiencyData.hour) && efficiencyData.hour > 0;
-                                const productionIsvalid = !isNaN(efficiencyData.production) ;
-                                const withoutsvalid = !isNaN(efficiencyData.without) ;
-                                const dueIsvalid = !isNaN(efficiencyData.due) ;
-                                const rejectionIsvalid = !isNaN(efficiencyData.rejection) ;
+                                // const manpowerIsvalid = !isNaN(efficiencyData.manpower) && efficiencyData.manpower > 0;
+                                // const hourIsvalid = !isNaN(efficiencyData.hour) && efficiencyData.hour > 0;
+                                // const productionIsvalid = !isNaN(efficiencyData.production) ;
+                                // const withoutsvalid = !isNaN(efficiencyData.without) ;
+                                // const dueIsvalid = !isNaN(efficiencyData.due) ;
+                                // const rejectionIsvalid = !isNaN(efficiencyData.rejection) ;
+                                const manpowerIsvalid = true
+                                const hourIsvalid = true;
+                                const withoutsvalid = true ;
+                                const dueIsvalid = true ;
+                                const rejectionIsvalid = true ;
+                                const productionIsvalid = true;
+                                
                                
 
 
@@ -207,7 +226,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.lineNumber.isValid}
                     label='Line:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         onChangeText: inputChangeHandler.bind(this,'lineNumber'),
                         value: inputs.lineNumber.value,
                     }} 
@@ -249,7 +268,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.SO.isValid}
                     label='SO:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         onChangeText: inputChangeHandler.bind(this,'SO'),
                         value: inputs.SO.value
                     }} />
@@ -257,7 +276,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.SMV.isValid}
                     label='SMV:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'SMV'),
                         value: inputs.SMV.value,
@@ -270,7 +289,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.manpower.isValid}
                     label='ManPower:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'manpower'),
                         value: inputs.manpower.value,
@@ -279,7 +298,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.hour.isValid}
                     label='Hour:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'hour'),
                         value: inputs.hour.value,
@@ -291,7 +310,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.production.isValid}
                     label='Production:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'production'),
                         value: inputs.production.value,
@@ -302,7 +321,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.without.isValid}
                     label='Without:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'without'),
                         value: inputs.without.value,
@@ -311,7 +330,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.due.isValid}
                     label='Due:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'due'),
                         value: inputs.due.value,
@@ -320,7 +339,7 @@ export default function EfficiencyForm({onSubmit,onCancel,onButton, defaultValue
                     style={styles.rowInput}
                     invalid={!inputs.rejection.isValid}
                     label='Rejection:' textInputConfig={{
-                        keyboardType:'decimal-pad',
+                        keyboardType:'phone-pad',
                         maxLentgh: 10,
                         onChangeText: inputChangeHandler.bind(this,'rejection'),
                         value: inputs.rejection.value,

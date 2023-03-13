@@ -38,7 +38,7 @@ function AuthenticatedUser(){
         <Stack.Screen name="HOURLY PRODUCTION CONTAINER" component={HourlyProductionContainer} options={{title:"SEWING PRODUCTION", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
         <Stack.Screen name="MACHINE OPTIMIZATION" component={MachineOptimizationContainer} options={{title:"MACHINE DATABASE", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
         <Stack.Screen name="CAPACITY ANALYSIS" component={CapacityAnalysisContainer} options={{title:"CAPACITY ANALYSIS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
-        <Stack.Screen name="EFFICIENCY ANALYSIS" component={EfficiencyContainer} options={{title:"EFFICIENCY ANALYSIS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
+        <Stack.Screen name="EFFICIENCY ANALYSIS" component={EfficiencyContainer} options={{headerShown:false}}/>
         <Stack.Screen name="SQUARE NEWS" component={SquareNews} options={{title:"SQUARE NEWS", headerTitleStyle:{fontWeight:'bold', color:ColorLibrary.primary_text_border_button, fontSize:22}}}/>
 
         
